@@ -6,7 +6,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FADE_IN_ANIMATION_SETTINGS } from "@/lib/constants";
 import useScroll from "@/lib/hooks/use-scroll";
 import WalletConnector from "./wallet-connecter";
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -97,6 +107,12 @@ const components: { title: string; href: string; description: string }[] = [
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const scrolled = useScroll(25);
+
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <header
       className={`sticky top-0 w-full ${
@@ -110,26 +126,14 @@ export default function Navbar() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
-          </a>
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+          >
+            Commend.XYZ
+          </Link>
         </div>
         <div className="flex lg:hidden">
-          {/* <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Open main menu</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button> */}
-          {/* <Button variant="default">
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </Button> */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost">
@@ -137,19 +141,19 @@ export default function Navbar() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Commend.XYZ</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  <span>Billing</span>
-                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <div className="flex items-center text-center justify-center">
+                  <WalletConnector />
+                </div>
+
+                <Link href="/create-profile">
+                  <DropdownMenuItem>
+                    <CreditCard className="mr-2 h-4 w-4" />
+                    <span>Create Profile</span>
+                  </DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
@@ -273,9 +277,9 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/docs" legacyBehavior passHref>
+                <Link href="/create-profile" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Documentation
+                    Create Profile
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -284,7 +288,8 @@ export default function Navbar() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-2">
           {/* <Button variant="default">Connect Wallet</Button> */}
-          <WalletConnector />
+
+          {mounted && <WalletConnector />}
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
