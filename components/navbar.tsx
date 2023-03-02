@@ -128,15 +128,41 @@ export default function Navbar() {
         <div className="flex lg:flex-1">
           <Link
             href="/"
-            className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+            className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
           >
             Commend.XYZ
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden space-x-2">
+          {/* <Button size="sm" variant="default">
+            Connect Wallet
+          </Button> */}
+          {mounted && (
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <Button size="sm" variant="default">
+                  Connect Wallet
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Are you sure absolutely sure?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost">
+              <Button variant="ghost" size="sm">
                 <Menu className="h-6 w-6" aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
@@ -144,16 +170,18 @@ export default function Navbar() {
               <DropdownMenuLabel>Commend.XYZ</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <div className="flex items-center text-center justify-center">
-                  <WalletConnector />
-                </div>
-
                 <Link href="/create-profile">
                   <DropdownMenuItem>
                     <CreditCard className="mr-2 h-4 w-4" />
                     <span>Create Profile</span>
                   </DropdownMenuItem>
                 </Link>
+
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+
                 <DropdownMenuItem>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
@@ -225,7 +253,7 @@ export default function Navbar() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Commend</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
@@ -244,9 +272,8 @@ export default function Navbar() {
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/docs" title="Introduction">
-                      Re-usable components built using Radix UI and Tailwind
-                      CSS.
+                    <ListItem href="/commend" title="Commend Someone">
+                      Send any wallet address a commendation.
                     </ListItem>
                     <ListItem href="/docs/installation" title="Installation">
                       How to install dependencies and structure your app.
@@ -327,8 +354,10 @@ const ListItem = React.forwardRef<
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
+          //   @ts-ignore
+          href={props.href}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-[#444] dark:focus:bg-[#555]",
             className
@@ -339,7 +368,7 @@ const ListItem = React.forwardRef<
           <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-white">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
