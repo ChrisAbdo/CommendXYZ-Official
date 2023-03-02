@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BarChart, Clock, Home, Menu, Search } from "lucide-react";
+import { BarChart, Clock, Home, Menu, SlidersHorizontal } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -150,7 +150,7 @@ export default function CommendPage() {
           {/* Navigation */}
           <nav className="mt-6 px-3">
             <Select>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger>
                 <SelectValue placeholder="Filter by role" />
               </SelectTrigger>
               <SelectContent>
@@ -197,74 +197,14 @@ export default function CommendPage() {
       {/* Main column */}
       <div className="flex flex-col lg:pl-64">
         {/* Search header */}
-        <div className="sticky top-0 z-10 justify-between flex h-16 flex-shrink-0 border-b border-gray-200 dark:border-[#555] bg-white dark:bg-[#111] lg:hidden">
-          {/* <button
-            type="button"
-            className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden"
-          >
-            <span className="sr-only">Open sidebar</span>
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button> */}
-          <div className="px-4 sm:px-6 lg:px-8">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" className="lg:hidden">
-                  <Menu className="h-6 w-6" aria-hidden="true" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent position={position} size="content">
-                <SheetHeader>
-                  <SheetTitle>Edit profile</SheetTitle>
-                  <SheetDescription>
-                    Make changes to your profile here. Click save when youre
-                    done.
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      value="Pedro Duarte"
-                      className="col-span-3"
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="username" className="text-right">
-                      Username
-                    </Label>
-                    <Input
-                      id="username"
-                      value="@peduarte"
-                      className="col-span-3"
-                    />
-                  </div>
-                </div>
-                <SheetFooter>
-                  <Button type="submit">Save changes</Button>
-                </SheetFooter>
-              </SheetContent>
-            </Sheet>
-          </div>
-          <div className="flex  justify-between px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-1">
-              <Input placeholder="Search..." />
-            </div>
-            <div className="flex items-center">{/* Profile dropdown */}</div>
-          </div>
-        </div>
+
         <main className="flex-1">
           {/* Pinned projects */}
           <div className="mt-6 px-4 sm:px-6 lg:px-8">
             <h2 className="text-sm font-medium text-black dark:text-white">
-              Pinned Projects
+              Pinned Message
             </h2>
-            <ul
-              role="list"
-              className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4"
-            >
+            <ul role="list" className="mt-3">
               {pinnedProjects.map((project) => (
                 <li
                   key={project.id}
@@ -278,15 +218,15 @@ export default function CommendPage() {
                   >
                     {project.initials}
                   </div>
-                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
+                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white dark:bg-[#333] dark:border-[#555]">
                     <div className="flex-1 truncate px-4 py-2 text-sm">
                       <a
                         href="#"
-                        className="font-medium text-gray-900 hover:text-gray-600"
+                        className="font-medium text-black dark:text-white hover:text-gray-600"
                       >
                         {project.title}
                       </a>
-                      <p className="text-gray-500">
+                      <p className="text-gray-500 dark:text-[#999]">
                         {project.totalMembers} Members
                       </p>
                     </div>
@@ -298,6 +238,68 @@ export default function CommendPage() {
 
           {/* Projects list (only on smallest breakpoint) */}
           <div className="mt-10 sm:hidden">
+            <div className="sticky top-0 z-10 justify-between flex h-16 flex-shrink-0   bg-white dark:bg-[#111] lg:hidden">
+              <div className="px-4 sm:px-6 lg:px-8">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" className="lg:hidden">
+                      <SlidersHorizontal
+                        className="h-6 w-6"
+                        aria-hidden="true"
+                      />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent position={position} size="xl">
+                    <SheetHeader>
+                      <SheetTitle>Edit profile</SheetTitle>
+                      <SheetDescription>
+                        Make changes to your profile here. Click save when youre
+                        done.
+                      </SheetDescription>
+                    </SheetHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                          Name
+                        </Label>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="username" className="text-right">
+                          Username
+                        </Label>
+                      </div>
+                    </div>
+                    <SheetFooter>
+                      <Button type="submit">Save changes</Button>
+                    </SheetFooter>
+                  </SheetContent>
+                </Sheet>
+              </div>
+              <div className="flex  justify-between px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-1">
+                  <div>
+                    <div className="relative flex items-center">
+                      {/* <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  placeholder="Search"
+                  className="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                /> */}
+                      <Input className="w-full" placeholder="Quick Search" />
+                      <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                        <kbd className="inline-flex items-center rounded border border-gray-200 dark:border-[#555] px-1 font-sans text-xs text-gray-400 dark:text-[#777]">
+                          ⌘K
+                        </kbd>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  {/* Profile dropdown */}
+                </div>
+              </div>
+            </div>
             <div className="px-4 sm:px-6">
               <h2 className="text-sm font-medium text-black dark:text-white">
                 Projects

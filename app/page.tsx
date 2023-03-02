@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import { Twitter, Github } from "lucide-react";
@@ -85,7 +86,9 @@ export default function page() {
                 </motion.div>
               </motion.div>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <Button variant="default">Get Started</Button>
+                <Link href="/create-profile">
+                  <Button variant="default">Get Started</Button>
+                </Link>
                 <a
                   href="#"
                   className="text-sm font-semibold leading-6 text-black dark:text-white"

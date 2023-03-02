@@ -64,6 +64,8 @@ import {
   User,
   UserPlus,
   Users,
+  CheckCircle,
+  Twitter,
 } from "lucide-react";
 
 const components: { title: string; href: string; description: string }[] = [
@@ -117,12 +119,12 @@ export default function Navbar() {
     <header
       className={`sticky top-0 w-full ${
         scrolled
-          ? " bg-white/50 dark:bg-[#111]/50 backdrop-blur-xl"
+          ? " bg-white/50 dark:bg-[#111]/50 backdrop-blur-xl "
           : "bg-white/0"
-      } z-30 transition-all`}
+      } z-30 transition-all `}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-4"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
@@ -172,33 +174,19 @@ export default function Navbar() {
               <DropdownMenuGroup>
                 <Link href="/create-profile">
                   <DropdownMenuItem>
-                    <CreditCard className="mr-2 h-4 w-4" />
+                    <User className="mr-2 h-4 w-4" />
                     <span>Create Profile</span>
                   </DropdownMenuItem>
                 </Link>
-
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Keyboard className="mr-2 h-4 w-4" />
-                  <span>Keyboard shortcuts</span>
-                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <Link href="/commend">
+                  <DropdownMenuItem>
+                    <CheckCircle className="mr-2 h-4 w-4" />
+                    <span>Commend Someone</span>
+                  </DropdownMenuItem>
+                </Link>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <Users className="mr-2 h-4 w-4" />
-                  <span>Team</span>
-                </DropdownMenuItem>
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>
                     <Sun className="mr-2 h-4 w-4" />
@@ -221,11 +209,6 @@ export default function Navbar() {
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <DropdownMenuItem>
-                  <Plus className="mr-2 h-4 w-4" />
-                  <span>New Team</span>
-                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
@@ -233,18 +216,8 @@ export default function Navbar() {
                 <span>GitHub</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <LifeBuoy className="mr-2 h-4 w-4" />
-                <span>Support</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem disabled>
-                <Cloud className="mr-2 h-4 w-4" />
-                <span>API</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                <Twitter className="mr-2 h-4 w-4" />
+                <span>Twitter</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
