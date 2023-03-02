@@ -117,7 +117,7 @@ const SHEET_POSITIONS = ["top", "right", "bottom", "left"] as const;
 
 type SheetPosition = typeof SHEET_POSITIONS[number];
 
-export default function page() {
+export default function CommendPage() {
   const [position, setPosition] = React.useState<SheetPosition>("left");
   return (
     <div className="min-h-full">
@@ -216,7 +216,7 @@ export default function page() {
                 <SheetHeader>
                   <SheetTitle>Edit profile</SheetTitle>
                   <SheetDescription>
-                    Make changes to your profile here. Click save when you're
+                    Make changes to your profile here. Click save when youre
                     done.
                   </SheetDescription>
                 </SheetHeader>
